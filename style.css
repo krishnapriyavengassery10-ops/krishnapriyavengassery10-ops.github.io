@@ -82,16 +82,20 @@ nav a {
 nav a:hover { color: var(--amber); }
 
 /* ---------- Hero (homepage only) ---------- */
-.hero { position: relative; padding: 14vh 6vw 12vh; max-width: 720px; overflow: hidden; z-index: 1; }
+.hero { position: relative; padding: 14vh 6vw 12vh; overflow: hidden; z-index: 1; }
+.hero-content { position: relative; z-index: 1; max-width: 720px; }
 .fog { position: absolute; border-radius: 50%; filter: blur(60px); pointer-events: none; z-index: -1; }
-.fog-a { width: 480px; height: 480px; top: -140px; left: -100px; background: radial-gradient(circle, rgba(122,35,35,0.18), transparent 70%); }
-.fog-b { width: 560px; height: 560px; top: 20%; left: 40%; background: radial-gradient(circle, rgba(169,121,63,0.10), transparent 70%); }
+.fog-a { width: 480px; height: 480px; top: -140px; left: -80px; background: radial-gradient(circle, rgba(122,35,35,0.18), transparent 70%); }
+.fog-b { width: 560px; height: 560px; top: 15%; left: 38%; background: radial-gradient(circle, rgba(169,121,63,0.10), transparent 70%); }
+.fog-c { width: 520px; height: 520px; top: 5%; right: -140px; background: radial-gradient(circle, rgba(169,121,63,0.14), transparent 70%); }
 @media (prefers-reduced-motion: no-preference) {
   .fog-a { animation: drift-a 26s ease-in-out infinite alternate; }
   .fog-b { animation: drift-b 32s ease-in-out infinite alternate; }
+  .fog-c { animation: drift-c 29s ease-in-out infinite alternate; }
 }
 @keyframes drift-a { from { transform: translate(0,0) scale(1); } to { transform: translate(60px,40px) scale(1.15); } }
 @keyframes drift-b { from { transform: translate(0,0) scale(1); } to { transform: translate(-50px,30px) scale(0.9); } }
+@keyframes drift-c { from { transform: translate(0,0) scale(1); } to { transform: translate(-60px,50px) scale(1.1); } }
 
 .hero p.kicker { font-family: var(--font-display); color: var(--amber); font-size: 0.85rem; margin: 0 0 18px; }
 .hero h1 { font-family: var(--font-display); font-size: clamp(1.8rem,4vw,2.8rem); line-height: 1.4; margin: 0 0 20px; font-weight: normal; }
