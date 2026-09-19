@@ -96,25 +96,28 @@ nav a:hover { color: var(--amber); }
 .hero p.kicker { font-family: var(--font-display); color: var(--amber); font-size: 0.85rem; margin: 0 0 18px; }
 .hero h1 { font-family: var(--font-display); font-size: clamp(1.8rem,4vw,2.8rem); line-height: 1.4; margin: 0 0 20px; font-weight: normal; }
 
-.type-line { display: block; overflow: hidden; white-space: nowrap; width: 0; }
-@media (prefers-reduced-motion: no-preference) {
-  .type-line-1 { animation: type-1 1.6s steps(30) 0.3s forwards; }
-}
-@media (prefers-reduced-motion: reduce) { .type-line { width: auto; } }
-@keyframes type-1 { to { width: 41ch; } }
+/* Text wraps normally now — the typing effect itself is done
+   in script.js by revealing real characters, not by animating
+   a fixed width. That's what fixes long headlines getting cut
+   off at the edge of the window instead of wrapping. */
+.type-line { display: inline; }
 
-.cursor { display: inline-block; width: 0.55ch; background: var(--amber); margin-left: 2px; opacity: 0; }
+.cursor { display: inline-block; width: 0.55ch; background: var(--amber); margin-left: 2px; }
 @media (prefers-reduced-motion: no-preference) {
-  .cursor { animation: cursor-in 0.1s ease forwards 1.9s, blink 1s steps(1) infinite 2s; }
+  .cursor { animation: blink 1s steps(1) infinite; }
 }
-@media (prefers-reduced-motion: reduce) { .cursor { opacity: 1; } }
-@keyframes cursor-in { to { opacity: 1; } }
 @keyframes blink { 50% { opacity: 0; } }
 
-.hero p.sub { color: var(--paper-dim); font-size: 1.05rem; max-width: 60ch; opacity: 0; }
-@media (prefers-reduced-motion: no-preference) { .hero p.sub { animation: fade-in 0.8s ease forwards 2s; } }
-@media (prefers-reduced-motion: reduce) { .hero p.sub { opacity: 1; } }
-@keyframes fade-in { to { opacity: 1; } }
+.hero p.sub { color: var(--paper-dim); font-size: 1.05rem; max-width: 60ch; }
+/* Only hidden-then-revealed when JS turns on the typing
+   animation (see script.js). Without JS, or with reduced
+   motion, this rule never applies and the text just shows. */
+.hero.hero-animate p.sub { opacity: 0; transform: translateY(6px); }
+.hero.hero-animate p.sub.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
 
 /* ---------- Case file grid (homepage) ---------- */
 .files {
