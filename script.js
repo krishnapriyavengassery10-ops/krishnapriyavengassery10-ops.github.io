@@ -104,7 +104,40 @@
 
 
   /* -------------------------------------------------------
-     5. SCROLL REVEALS
+     5. HERO TYPEWRITER
+     Types the headline out character by character instead of
+     animating a CSS width. That matters because a width-based
+     trick needs "white-space: nowrap", which cannot wrap onto
+     a second line — on a narrow window the sentence just runs
+     off the edge of the screen instead. Typing real characters
+     lets the browser wrap the text normally, at any width.
+  ------------------------------------------------------- */
+  var typeEl = document.querySelector('.type-line-1');
+  var heroSection = document.querySelector('.hero');
+  var subEl = document.querySelector('.hero .sub');
+
+  if (typeEl && heroSection) {
+    heroSection.classList.add('hero-animate'); // tells CSS to hide .sub until typing finishes
+    var fullText = typeEl.textContent;
+    typeEl.textContent = '';
+
+    var charDelay = 45; // ms between each letter appearing
+    var i = 0;
+    function typeNextChar() {
+      i++;
+      typeEl.textContent = fullText.slice(0, i);
+      if (i < fullText.length) {
+        setTimeout(typeNextChar, charDelay);
+      } else if (subEl) {
+        subEl.classList.add('is-visible');
+      }
+    }
+    setTimeout(typeNextChar, 300); // brief pause before typing starts
+  }
+
+
+  /* -------------------------------------------------------
+     6. SCROLL REVEALS
      IntersectionObserver watches elements and adds a class
      the moment they scroll into view, which triggers their
      CSS animation. Used for the case cards on the homepage
