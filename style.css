@@ -441,6 +441,12 @@ footer p { transition: opacity 0.6s ease; }
   border: 1px solid var(--line);
   filter: grayscale(45%) contrast(1.05) brightness(0.85);
 }
+.article-image svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--line);
+}
 
 /* ---------- About photo (footer) ---------- */
 .about-block { display: flow-root; }
